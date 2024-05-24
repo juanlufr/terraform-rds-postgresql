@@ -2,15 +2,6 @@
 
 Este repositorio contiene la configuración de Terraform para crear una instancia de base de datos RDS PostgreSQL en AWS.
 
-## Estructura del Proyecto
-
-El proyecto está organizado de la siguiente manera:
-
-- **main.tf**: Archivo principal de configuración de Terraform que define los recursos necesarios para la instancia de base de datos RDS.
-- **variables.tf**: Archivo que define las variables utilizadas en la configuración de Terraform.
-- **terraform.tfvars**: Archivo de variables de Terraform que contiene los valores de las variables definidas en variables.tf.
-- **README.md**: Este archivo.
-
 ## Requisitos
 
 Antes de comenzar, asegúrate de tener lo siguiente:
@@ -18,39 +9,63 @@ Antes de comenzar, asegúrate de tener lo siguiente:
 - Una cuenta de AWS con las credenciales necesarias para crear recursos.
 - Terraform instalado en tu sistema local.
 
-## Configuración
+# Estructura del Proyecto
 
-Antes de aplicar la configuración de Terraform, asegúrate de configurar las siguientes variables en el archivo `terraform.tfvars`:
+```
+terraform-rds-postgresql/
+├── main.tf
+├── variables.tf
+└── modules/
+    ├── rds/
+    │   ├── main.tf
+    │   └── variables.tf
+    └── vpc/
+        ├── main.tf
+        └── outputs.tf
+```
+En esta estructura:
 
-```hcl
-db_instance_identifier = "my-rds-instance"
-db_name                = "mydatabase"
-db_username            = "admin"
-db_password            = "mypassword"
-db_engine_version      = "12.5"
-db_instance_class      = "db.t3.micro"
-allocated_storage      = 20
-vpc_id                 = "your-vpc-id"
-subnet_ids             = ["subnet-1", "subnet-2"]
-Asegúrate de reemplazar los valores con los apropiados para tu configuración.
+main.tf y variables.tf en la raíz del proyecto terraform-rds-postgresql contienen la configuración principal y las variables comunes que se aplican a todos los módulos.
+
+modules/ es un directorio que contiene los módulos reutilizables.
+
+modules/rds/ es el directorio del módulo RDS, que contiene los archivos específicos del módulo para la configuración de RDS.
+
+modules/rds/main.tf y modules/rds/variables.tf son los archivos específicos del módulo RDS.
+
+modules/vpc/ es el directorio del módulo VPC, que contiene los archivos específicos del módulo para la configuración de la VPC.
+
+modules/vpc/main.tf y modules/vpc/outputs.tf son los archivos específicos del módulo VPC.
+
+Esta estructura organiza tu proyecto de Terraform de manera que los archivos comunes están en la raíz, mientras que los archivos específicos del módulo están dentro del directorio modules/.
+
+
 
 Uso
 Para aplicar la configuración de Terraform, sigue estos pasos:
 
-Inicializa el directorio de trabajo:
+1. Inicializa el directorio de trabajo:
+```
 terraform init
+```
 
-Previsualiza los cambios que Terraform aplicará:
+2. Previsualiza los cambios que Terraform aplicará:
+```
 terraform plan
+```
 
-Aplica la configuración de Terraform para crear la instancia de base de datos RDS:
+3. Aplica la configuración de Terraform para crear la instancia de base de datos RDS, confirma la aplicación escribiendo 'yes' cuando se solicite:
+```
 terraform apply
+```
 
-Confirma la aplicación escribiendo yes cuando se solicite.
 
-Limpieza
+
+4 Limpieza
 Para eliminar todos los recursos creados por Terraform, puedes ejecutar el siguiente comando:
+```
 terraform destroy
+```
 
 Notas
 Asegúrate de revisar y ajustar la configuración según tus necesidades específicas antes de aplicarla.
