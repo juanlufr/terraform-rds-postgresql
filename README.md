@@ -9,7 +9,7 @@ Antes de comenzar, asegúrate de tener lo siguiente:
 - Una cuenta de AWS con las credenciales necesarias para crear recursos.
 - Terraform instalado en tu sistema local.
 
-# Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 terraform-rds-postgresql/
@@ -43,7 +43,7 @@ Esta estructura organiza tu proyecto de Terraform de manera que los archivos com
 
 
 
-### Uso
+## Uso
 Para aplicar la configuración de Terraform, sigue estos pasos:
 
 1. Inicializa el directorio de trabajo:
