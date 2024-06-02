@@ -32,18 +32,16 @@ resource "aws_db_subnet_group" "main" {
 }
 
 resource "aws_db_instance" "postgres" {
-  allocated_storage    = var.allocated_storage
-  engine               = "postgres"
-  #engine_version      = var.db_engine_version
-  engine_version       = "11.22"  # Para la prueba lo meto directamente
-  #instance_class      = var.db_instance_class
-  instance_class       = "db.t3.micro" # Para la prueba lo meto directamente
-  username             = var.db_username
-  password             = var.db_password
-  db_subnet_group_name = aws_db_subnet_group.main.name
+  allocated_storage      = var.allocated_storage
+  engine                 = "postgres"
+  engine_version         = var.db_engine_version
+  instance_class         = var.db_instance_class
+  username               = var.db_username
+  password               = var.db_password
+  db_subnet_group_name   = aws_db_subnet_group.main.name
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
-  skip_final_snapshot  = true
-  identifier           = var.db_instance_identifier
+  skip_final_snapshot    = true
+  identifier             = var.db_instance_identifier
 
   tags = {
     Name = var.db_name
