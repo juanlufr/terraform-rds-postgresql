@@ -21,7 +21,9 @@ terraform-rds-postgresql/
     │   └── variables.tf
     └── vpc/
         ├── main.tf
+        ├── variables.tf
         └── outputs.tf
+    
 ```
 En esta estructura:
 
@@ -35,13 +37,13 @@ modules/rds/main.tf y modules/rds/variables.tf son los archivos específicos del
 
 modules/vpc/ es el directorio del módulo VPC, que contiene los archivos específicos del módulo para la configuración de la VPC.
 
-modules/vpc/main.tf y modules/vpc/outputs.tf son los archivos específicos del módulo VPC.
+modules/vpc/main.tf, modules/vpc/variables.tf y modules/vpc/outputs.tf son los archivos específicos del módulo VPC.
 
 Esta estructura organiza tu proyecto de Terraform de manera que los archivos comunes están en la raíz, mientras que los archivos específicos del módulo están dentro del directorio modules/.
 
 
 
-Uso
+### Uso
 Para aplicar la configuración de Terraform, sigue estos pasos:
 
 1. Inicializa el directorio de trabajo:
@@ -54,11 +56,10 @@ terraform init
 terraform plan
 ```
 
-3. Aplica la configuración de Terraform para crear la instancia de base de datos RDS, confirma la aplicación escribiendo 'yes' cuando se solicite:
+3. En este caso vamos a usar el archivo terraform.tfvars que es dónde debemos dar valor a nuestras variables. Aplica la configuración de Terraform para crear la instancia de base de datos RDS, confirma la aplicación escribiendo 'yes' cuando se solicite:
 ```
-terraform apply
+terraform apply -var-file="terraform.tfvars"
 ```
-
 
 
 4 Limpieza
